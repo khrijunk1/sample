@@ -15,6 +15,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                shell(script: "mv build.log ${flavor}-L1-docker.log || true")
+                archiveArtifacts artifacts: "${flavor}-L1-docker.log", allowEmptyArchive: true
             }
         }
     }
